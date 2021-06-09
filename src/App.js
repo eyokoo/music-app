@@ -1,28 +1,36 @@
+import { Component } from 'react';
 import './App.css';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard'
 
-function App() {
 
-  const onActionClicked = () => {
-    console.log('Button action clicked');
+export default class App extends Component {
+
+  state = {
+    isLoggedIn: false
+  };
+
+  setLogin = (value) => {
+    this.setState({isLoggedIn: value});
   }
 
-  return (
-    <div className="App">
+  render () {
+    return (
+      <div className="App">
+      <AppBar position="static">
+        <Toolbar>
+          My Music App
+        </Toolbar>
+      </AppBar>
 
-      <Card className="card-container">
-        <CardContent>
-          Here is where the content of the card goes
-    </CardContent>
-        <CardActions>
-          <Button size="small" onClick={onActionClicked}> Action </Button>
-        </CardActions>
-      </Card>
+      {
+        !this.state.isLoggedIn
+        ? <Login onLogin={this.setLogin} />
+        : <Dashboard/>
+      }
     </div>
-  );
+    )
+  };
 }
-
-export default App;
