@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
 
 function App() {
+
+  const onActionClicked = () => {
+    console.log('Button action clicked');
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Card className="card-container">
+        <CardContent>
+          Here is where the content of the card goes
+    </CardContent>
+        <CardActions>
+          <Button size="small" onClick={onActionClicked}> Action </Button>
+        </CardActions>
+      </Card>
     </div>
   );
 }
