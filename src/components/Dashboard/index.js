@@ -15,10 +15,10 @@ import './style.css'
 
 export default class Dashboard extends Component {
 
-  //need to define value, classes, quality, handleChange
+
   state = {
     isClicked: false,
-    value: ''
+    volume: ''
   }
 
   onClickHandler = () => {
@@ -27,12 +27,13 @@ export default class Dashboard extends Component {
       this.setState({ isClicked: true })
   }
 
-  handleChange = (event) => {
-    console.log('something changed')
+
+
+  handleSliderChange = (event, newVolume) => {
+    this.setState({volume: newVolume})
   }
 
   render() {
-
 
     return (
 
@@ -50,7 +51,7 @@ export default class Dashboard extends Component {
             <Typography variant="h5"> Master Volume </Typography>
             <Typography variant="body2"> Overrides all other sound settings in this application. </Typography>
           </CardContent>
-          <Slider value={value} onChange={this.handleChange} defaultValue={20} valueLabelDisplay="auto" step={10} marks min={0} max={100} />
+          <Slider getAriaValueText={this.handleSliderChange} onChange={this.handleSliderChange} defaultValue={20} valueLabelDisplay="auto" step={10} marks min={0} max={100} />
         </Card>
 
         <Card className="card-container">
@@ -58,15 +59,25 @@ export default class Dashboard extends Component {
             <Typography variant="h5"> Sound Quality </Typography>
             <Typography variant="body2"> Manually control the music quality in event of poor connection. </Typography>
           </CardContent>
-          <FormControl variant="filled" className={classes.formControl}>
-            <InputLabel>Quality</InputLabel>
-            <Select value={quality} onChange={handleChange}>
+          <FormControl variant="filled" >
+            <InputLabel className='inputLabel'>Quality</InputLabel>
+            <Select onChange={this.handleChange}>
               <MenuItem value={10}>Low</MenuItem>
               <MenuItem value={20}>Normal</MenuItem>
               <MenuItem value={30}>High</MenuItem>
             </Select>
           </FormControl>
         </Card>
+
+        <div>
+          <h2>
+            Systems Notifications:
+          </h2>
+
+          {if(this.state.volume > 80)
+            'Listening to music at a high volume could cause long-term hearing loss.'
+  }
+        </div>
 
       </div>
     )

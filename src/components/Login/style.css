@@ -8,3 +8,11 @@
 .MuiTextField-root {
   margin-bottom: 12px;
 }
+
+.Card {
+  display: flex;
+}
+
+.inputLabel {
+  
+}
