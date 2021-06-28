@@ -1,17 +1,28 @@
 import { Component } from 'react';
-import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import {withStyles} from '@material-ui/core/styles'
 
-import './style.css'
 
-export default class Login extends Component {
+const styles = theme => ({
+    loginContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        margin: '28px auto 0',
+        width: '300px'
+    },
+    textField: {
+        marginBottom: theme.spacing(2)
+    }
+});
+
+class Login extends Component {
   render() {
-     const { onLogin } = this.props;
+     const { onLogin, classes } = this.props;
       return (
-          <div className="login-container">
-              <TextField label="Username" variant="outlined" />
-              <TextField label="Password" variant="outlined" />
+          <div className={classes.loginContainer}>
+              <TextField className={classes.textField} label="Username" variant="outlined" />
+              <TextField className={classes.textField} label="Password" variant="outlined" />
               <Button variant="contained" color="primary"
                   onClick={() => onLogin(true)}>
                   Login
@@ -20,3 +31,5 @@ export default class Login extends Component {
       );
   }
 }
+
+export default withStyles(styles)(Login)
